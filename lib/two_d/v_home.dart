@@ -42,6 +42,7 @@ class _HomePageState extends State<HomePage> {
                 children: [
                   Text(
                     xEn() ? 'Eng' : 'မြန်မာ',
+                    textScaleFactor: 1,
                     style: const TextStyle(
                       color: Colors.black,
                       fontSize: 14,
@@ -145,42 +146,58 @@ class _HomePageState extends State<HomePage> {
                       })),
               // num list
               if (controller.methodList[controller.selectedIndex].xNeedNum)
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: List.generate(10, (index) {
-                    return Expanded(
-                      child: InkWell(
-                        onTap: () {
-                          controller.selectedNumber = index.toString();
-                          controller.filterNumbers();
-                          controller.update();
-                        },
-                        child: Container(
-                          alignment: Alignment.center,
-                          margin: const EdgeInsets.symmetric(
-                              horizontal: 2, vertical: 5),
-                          padding: const EdgeInsets.symmetric(vertical: 10),
-                          decoration: BoxDecoration(
-                              color:
-                                  controller.selectedNumber == index.toString()
+                Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      xEn()
+                          ? 'Tips: Please click the desire number'
+                          : 'အကြံပြုချက်: ကျေးဇူပြု၍လိုရာနံပါတ်အားရွေးပါ',
+                      style: const TextStyle(
+                        color: Colors.grey,
+                        fontSize: 14,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: List.generate(10, (index) {
+                        return Expanded(
+                          child: InkWell(
+                            onTap: () {
+                              controller.selectedNumber = index.toString();
+                              controller.filterNumbers();
+                              controller.update();
+                            },
+                            child: Container(
+                              alignment: Alignment.center,
+                              margin: const EdgeInsets.symmetric(
+                                  horizontal: 2, vertical: 5),
+                              padding: const EdgeInsets.symmetric(vertical: 10),
+                              decoration: BoxDecoration(
+                                  color: controller.selectedNumber ==
+                                          index.toString()
                                       ? Colors.deepOrange
                                       : Colors.grey.withOpacity(0.5),
-                              borderRadius: BorderRadius.circular(5)),
-                          child: Text(
-                            index.toString(),
-                            style: TextStyle(
-                              color:
-                                  controller.selectedNumber == index.toString()
+                                  borderRadius: BorderRadius.circular(5)),
+                              child: Text(
+                                index.toString(),
+                                style: TextStyle(
+                                  color: controller.selectedNumber ==
+                                          index.toString()
                                       ? Colors.white
                                       : Colors.black,
-                              fontSize: 16,
-                              fontWeight: FontWeight.w600,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
                             ),
                           ),
-                        ),
-                      ),
-                    );
-                  }),
+                        );
+                      }),
+                    ),
+                  ],
                 ),
 
               const SizedBox(
