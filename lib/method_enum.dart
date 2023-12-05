@@ -1,0 +1,21 @@
+enum TwoDMethodTypes {
+  none,
+  brother,
+  firstSeries,
+  lastSeries,
+  evenEven,
+  oddOdd,
+  evenOdd,
+  oddEven,
+  talLonePar,
+  duplicate,
+  evenDuplicate,
+  oddDuplicate,
+  sum,
+  power,
+  netKha,
+  firstEven,
+  lastEven,
+  firstOdd,
+  lastOdd
+}
